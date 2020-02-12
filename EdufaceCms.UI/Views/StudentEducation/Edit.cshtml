@@ -1,0 +1,65 @@
+﻿@model EdufaceCms.Entities.Concrete.StudentEducationEntity
+@using EdufaceCms.BusinessLayer.Managers.EntityFramework;
+@using EdufaceCms.Entities.Concrete;
+
+@{
+    ViewData["Title"] = ViewData["StudentName"]+ "Ödemesini Düzenle";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<h1>Düzenle</h1>
+
+<h4>StudentEducationEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EducationId" class="col-sm-2 col-form-label">Eğitim </label>
+                <select asp-for="EducationId" asp-items='@new EfGenericRepository<EducationEntity>().GetSelectListItems("Name","Id","Eğitim Seçiniz",Model.EducationId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LevelId" class="col-sm-2 col-form-label">Seviye </label>
+                <select asp-for="LevelId" asp-items='@new EfGenericRepository<LevelEntity>().GetSelectListItems("Name","Id","Seviye Seçiniz",Model.LevelId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeId" class="col-sm-2 col-form-label">Zaman </label>
+                <select asp-for="TimeId" asp-items='@new EfGenericRepository<PaymentTypeEntity>().GetSelectListItems("Name","Id","Zaman Seçiniz",Model.TimeId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalHour" class="control-label"></label>
+                <input asp-for="TotalHour" class="form-control" />
+                <span asp-validation-for="TotalHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListPrice" class="control-label"></label>
+                <input asp-for="ListPrice" class="form-control" />
+                <span asp-validation-for="ListPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SavePrice" class="control-label"></label>
+                <input asp-for="SavePrice" class="form-control" />
+                <span asp-validation-for="SavePrice" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreDate" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GoToIndex">Listelemeye geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

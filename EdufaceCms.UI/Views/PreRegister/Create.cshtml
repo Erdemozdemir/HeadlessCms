@@ -1,0 +1,111 @@
+﻿@model EdufaceCms.Entities.Concrete.PreRegisterEntity
+@using EdufaceCms.BusinessLayer.Managers.EntityFramework;
+@using EdufaceCms.Entities.Concrete;
+
+@{
+    ViewData["Title"] = "Yeni Ön Kayıt Oluştur";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>PreRegisterEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewPerson" class="control-label"></label>
+                <input asp-for="InterviewPerson" class="form-control" />
+                <span asp-validation-for="InterviewPerson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewDate" class="control-label"></label>
+                <input asp-for="InterviewDate" class="form-control" />
+                <span asp-validation-for="InterviewDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CellPhone" class="control-label"></label>
+                <input asp-for="CellPhone" class="form-control" />
+                <span asp-validation-for="CellPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointmentDate" class="control-label"></label>
+                <input asp-for="AppointmentDate" class="form-control" />
+                <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GivenPrice" class="control-label"></label>
+                <input asp-for="GivenPrice" class="form-control" />
+                <span asp-validation-for="GivenPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimatedPrice" class="control-label"></label>
+                <input asp-for="EstimatedPrice" class="form-control" />
+                <span asp-validation-for="EstimatedPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Not" class="control-label"></label>
+                <input asp-for="Not" class="form-control" />
+                <span asp-validation-for="Not" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsRegister" /> @Html.DisplayNameFor(model => model.IsRegister)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataQualityId" class="control-label">Data Kalitesi</label>
+                <select asp-for="DataQualityId" class="custom-select" asp-items='@new EfGenericRepository<DataQualityEntity>().GetSelectListItems("Name","Id","Data Kalitesi Seçiniz",null)'></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataSourceId" class="control-label">Data Kaynağı</label>
+                <select asp-for="DataSourceId" class="custom-select" asp-items='@new EfGenericRepository<DataSourceEntity>().GetSelectListItems("Name","Id","Data Kaynağı Seçiniz",null)'></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LevelId" class="control-label">Seviye</label>
+                <select asp-for="LevelId"class="custom-select" asp-items='@new EfGenericRepository<LevelEntity>().GetSelectListItems("Name","Id","Seviye Kaynağı Seçiniz",null)'></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeId" class="control-label">Zaman</label>
+                <select asp-for="TimeId" class="custom-select" asp-items='@new EfGenericRepository<TimeEntity>().GetSelectListItems("Name","Id","Zaman Seçiniz",null)'></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTypeId" class="control-label">Ödeme Tipi</label>
+                <select asp-for="PaymentTypeId"class="custom-select" asp-items='@new EfGenericRepository<PaymentTypeEntity>().GetSelectListItems("Name","Id","Ödeme Tipi Seçiniz",null)'></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

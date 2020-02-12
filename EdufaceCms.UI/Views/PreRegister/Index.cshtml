@@ -1,0 +1,152 @@
+﻿@model IEnumerable<EdufaceCms.Entities.Concrete.PreRegisterEntity>
+
+@{
+    ViewData["Title"] = ViewData["PageSubTitle"];
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InterviewPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InterviewDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CellPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppointmentDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GivenPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EstimatedPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Not)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsRegister)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataQuality)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataSource)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Level)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModUser)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InterviewPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InterviewDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CellPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AppointmentDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GivenPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstimatedPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Not)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsRegister)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataQuality.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataSource.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModUser)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

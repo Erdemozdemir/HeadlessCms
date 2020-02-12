@@ -1,0 +1,127 @@
+﻿@model IEnumerable<EdufaceCms.Entities.Concrete.StudentEntity>
+
+@{
+    ViewData["Title"] = ViewData["PageSubTitle"];
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+
+
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CellPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModUser)
+                </th>
+                <th></th>
+                <th>
+                    Kefil |
+                    Eğitim |
+                    Ödemeler
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CellPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModUser)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detay</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Guarantor" asp-action="Index" asp-route-id="@item.Id">Kefil</a> |
+                        <a asp-controller="StudentEducation" asp-action="Index" asp-route-id="@item.Id">Eğitim</a> |
+                        <a asp-controller="StudentPayment" asp-action="Index" asp-route-id="@item.Id">Ödemeler</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+    var prevDisabled = !Convert.ToBoolean(ViewData["HasPreviousPage"]) ? "disabled" : "";
+    var nextDisabled = !Convert.ToBoolean(ViewData["HasNextPage"]) ? "disabled" : "";
+}
+
+@if (Convert.ToBoolean(ViewData["HasPreviousPage"]))
+{
+    <a asp-action="Index"
+       asp-route-pageNumber="@(Convert.ToInt32(ViewData["PageIndex"]) - 1)"
+       class="btn btn-default @prevDisabled">
+        Önceki
+    </a>
+}
+
+@if (Convert.ToBoolean(ViewData["HasNextPage"]))
+{
+    <a asp-action="Index"
+       asp-route-pageNumber="@(Convert.ToInt32(ViewData["PageIndex"]) + 1)"
+       class="btn btn-default @nextDisabled">
+        Sonraki
+    </a>
+}

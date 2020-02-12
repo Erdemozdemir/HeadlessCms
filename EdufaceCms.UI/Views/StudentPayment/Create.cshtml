@@ -1,0 +1,54 @@
+﻿@model EdufaceCms.Entities.Concrete.StudentPaymentEntity
+@using EdufaceCms.BusinessLayer.Managers.EntityFramework;
+@using EdufaceCms.Entities.Concrete;
+
+@{
+    ViewData["Title"] = "Yeni Öğrenci Ödemesi Oluştur";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+
+<h4>@ViewData["StudentName"] </h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AdvancePaymentDate" class="control-label"></label>
+                <input asp-for="AdvancePaymentDate" class="form-control" />
+                <span asp-validation-for="AdvancePaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstPaymentDate" class="control-label"></label>
+                <input asp-for="FirstPaymentDate" class="form-control" />
+                <span asp-validation-for="FirstPaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstallementCount" class="control-label"></label>
+                <input asp-for="InstallementCount" class="form-control" />
+                <span asp-validation-for="InstallementCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTypeId" class="col-sm-2 col-form-label">Ödeme Tipi </label>
+                <select asp-for="PaymentTypeId" asp-items='@new EfGenericRepository<PaymentTypeEntity>().GetSelectListItems("Name","Id","Ödeme Türü Seçiniz",null)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdvancePaymentPrice" class="control-label"></label>
+                <input asp-for="AdvancePaymentPrice" class="form-control" />
+                <span asp-validation-for="AdvancePaymentPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GoToIndex">Listelemeye geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

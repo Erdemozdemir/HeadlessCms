@@ -1,0 +1,62 @@
+﻿@model EdufaceCms.Entities.Concrete.StudentPaymentEntity
+@using EdufaceCms.BusinessLayer.Managers.EntityFramework;
+@using EdufaceCms.Entities.Concrete;
+
+@{
+    ViewData["Title"] = ViewData["StudentName"] + "Ödemesini Düzenle";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<h1>Düzenle</h1>
+
+<h4>StudentPaymentEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AdvancePaymentDate" class="control-label"></label>
+                <input asp-for="AdvancePaymentDate" class="form-control" />
+                <span asp-validation-for="AdvancePaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstPaymentDate" class="control-label"></label>
+                <input asp-for="FirstPaymentDate" class="form-control" />
+                <span asp-validation-for="FirstPaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstallementCount" class="control-label"></label>
+                <input asp-for="InstallementCount" class="form-control" />
+                <span asp-validation-for="InstallementCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTypeId" class="col-sm-2 col-form-label">Ödeme Tipi </label>
+                <select asp-for="PaymentTypeId" asp-items='@new EfGenericRepository<PaymentTypeEntity>().GetSelectListItems("Name","Id","Ödeme Türü Seçiniz",Model.PaymentTypeId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdvancePaymentPrice" class="control-label"></label>
+                <input asp-for="AdvancePaymentPrice" class="form-control" />
+                <span asp-validation-for="AdvancePaymentPrice" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreDate" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GoToIndex">Listelemeye geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

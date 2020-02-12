@@ -1,0 +1,75 @@
+﻿@model EdufaceCms.Entities.Concrete.GuarantorEntity
+@using EdufaceCms.BusinessLayer.Managers.EntityFramework;
+@using EdufaceCms.Entities.Concrete;
+
+@{
+    ViewData["Title"] = Model.Name+ " Düzenle";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<h1>Düzenle</h1>
+
+<h4>GuarantorEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TC" class="control-label"></label>
+                <input asp-for="TC" class="form-control" />
+                <span asp-validation-for="TC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityId" class="col-sm-2 col-form-label">Şehir </label>
+                <select asp-for="CityId" asp-items='@new EfGenericRepository<CityEntity>().GetSelectListItems("Name","Id","Şehir Seçiniz",Model.CityId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountyId" class="col-sm-2 col-form-label">İlçe </label>
+                <select asp-for="CountyId" asp-items='@new EfGenericRepository<CountyEntity>().GetSelectListItems("Name","Id","İlçe Seçiniz",Model.CountyId)' class="custom-select"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CellPhone" class="control-label"></label>
+                <input asp-for="CellPhone" class="form-control" />
+                <span asp-validation-for="CellPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proximity" class="control-label"></label>
+                <input asp-for="Proximity" class="form-control" />
+                <span asp-validation-for="Proximity" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listelemeye geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EdufaceCms.Entities.Concrete.StudentEducationEntity>
+
+@{
+    ViewData["Title"] = ViewData["PageSubTitle"];
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+
+
+<h4>@ViewData["StudentName"] </h4>
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalHour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ListPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SavePrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModUser)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalHour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SavePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModUser)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

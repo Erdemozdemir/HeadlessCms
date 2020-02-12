@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12 col-lg-11">
+
+        <div id="myAreaChart"></div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(DrawChart);
+
+        function DrawChart() {
+            // Area Chart Example
+            $.ajax({
+                type: "POST",
+                url: '/Report/GetData',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var data = new google.visualization.arrayToDataTable(result);
+                    console.log(data);
+
+                    var options = {
+                        title: "tester",
+                        width: 900,
+                        height: 500,
+                        hAxis: {
+                            format: 'M/d/yy',
+                            gridlines: { count: 15 }
+                        },
+                        vAxis: {
+                            gridlines: { color: 'none' },
+                            minValue: 0
+                        }
+                    };
+                    console.log(result);
+                    var chart = new google.visualization.LineChart(document.getElementById('myAreaChart'));
+
+                    chart.draw(data, options);
+                }
+            });
+        }
+    </script>
+}
