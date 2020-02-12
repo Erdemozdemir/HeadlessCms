@@ -1,6 +1,0 @@
-+Display nameler eklenmeli		
-+Requiredlar ErrorMessage eklenmeli.
-+DbContextten çikarilip repositorylere baglanmali.
-+h1 tagleri kaldirilmali. ViewData["PageSubTitle"] set edilmeli her sayfaya özel.
-+Relation olmayan tablolar stabil bir sekilde CRUD yapmali.
-+Back to List çalismiyor.
